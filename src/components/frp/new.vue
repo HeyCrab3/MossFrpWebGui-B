@@ -28,7 +28,7 @@
   
         <el-main>
           <el-scrollbar v-loading="isCreating">
-            <el-page-header title="返回" style="margin-left: 20px;" @back="router.push('/codes')">
+            <el-page-header title="返回" style="margin-left: 20px;" @back="router.push('/code')">
                 <template #content>
                 <span class="text-large font-600 mr-3"> 新建激活码 </span>
                 </template>
