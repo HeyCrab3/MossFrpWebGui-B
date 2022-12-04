@@ -8,7 +8,7 @@
             <el-menu-item index="/code"><el-icon><IconMenu /></el-icon>激活码列表</el-menu-item>
             <el-menu-item index="/store"><el-icon><Shop /></el-icon>商店</el-menu-item>
             <el-menu-item index="/settings"><el-icon><Setting /></el-icon>个人设置</el-menu-item>
-            <el-menu-item><el-icon><Wallet /></el-icon>螃蟹的爱发电</el-menu-item>
+            <el-menu-item index="/afdian"><el-icon><Wallet /></el-icon>螃蟹的爱发电</el-menu-item>
           </el-menu>
       </el-aside>
   
