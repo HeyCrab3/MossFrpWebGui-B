@@ -22,14 +22,13 @@
               <template #dropdown>
               </template>
             </el-dropdown>
-            <el-dropdown><span class="el-dropdown-link"><span id="userName">欢迎您，{{username}}</span><el-icon class="el-icon--right"><arrow-down /></el-icon></span><template #dropdown><el-dropdown-menu><a href="https://afdian.net/@HeyCrab" target="_blank"><el-dropdown-item>打赏螃蟹</el-dropdown-item></a><el-dropdown-item>退出登录</el-dropdown-item></el-dropdown-menu></template></el-dropdown>
+            <el-dropdown><span class="el-dropdown-link"><span id="userName">欢迎您，{{username}}</span><el-icon class="el-icon--right"><arrow-down /></el-icon></span><template #dropdown><el-dropdown-menu><a href="https://afdian.net/@HeyCrab" target="_blank"><el-dropdown-item>打赏螃蟹</el-dropdown-item></a><el-dropdown-item @click="logout">退出登录</el-dropdown-item></el-dropdown-menu></template></el-dropdown>
         </div>
         </el-header>
         <el-main>
           <el-scrollbar>
-            <h2>捐助螃蟹</h2>
-            <span style="margin-left: 20px;">你的捐助是我开发最大的动力！</span>
-            <iframe style="margin-left:10px; width:70%;height:701px;border:0" src="https://afdian.net/a/HeyCrab"></iframe>
+            <h2>捐助螃蟹</h2><span style="margin-left: 20px;">你的捐助是我开发最大的动力！</span><br/>
+            <iframe style="margin-left:20px; width:80%;height:701px;border:0" src="https://afdian.net/a/HeyCrab"></iframe>
           </el-scrollbar>
         </el-main>
       </el-container>
@@ -40,13 +39,23 @@
 import { Menu as IconMenu, House,Setting, Cpu, Shop, Wallet, ArrowDown,ArrowRight } from '@element-plus/icons-vue';
 import { useRoute } from 'vue-router';
 import { ref } from 'vue';
-import { GetStatusCode, isPassedVerifictionInt } from '../../modules/StatusCodeParser';
-import { GetCookie } from '../../modules/CookieHelper';
+import { GetStatusCode, isPassedVerifictionInt } from '../modules/StatusCodeParser';
+import { GetCookie } from '../modules/CookieHelper';
 import axios from 'axios';
 import { ElMessage } from 'element-plus';
-import router from './../router';
+import router from './router';
 const route = useRoute();
 let username = '**'
+
+const logout = () => {
+  ElMessageBox.confirm('确认退出登录？','退出登录')
+  .then(function(){
+    RemoveCookie('token')
+    router.push('/login')
+    ElMessage.success('您已退出登录')
+  })
+}
+
 axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
 .then(function(Response){
     const ResponseCode = GetStatusCode(Response);

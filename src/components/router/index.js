@@ -7,6 +7,7 @@ import storeView from '../frp/store.vue'
 import listView from '../frp/list.vue'
 import codeNewView from '../frp/new.vue'
 import settingsView from '../user/settings.vue'
+import donateView from '../afdian.vue'
 const routes = [
     {
         path: '/login',
@@ -42,6 +43,11 @@ const routes = [
         path: '/settings',
         name: 'Settings',
         component: settingsView
+    },
+    {
+        path: '/afdian',
+        name: 'Donate',
+        component: donateView
     }
 ];
 const router = createRouter({history: createWebHashHistory(),routes: routes});

@@ -22,7 +22,7 @@
               <template #dropdown>
               </template>
             </el-dropdown>
-            <el-dropdown><span class="el-dropdown-link"><span id="userName">欢迎您，{{email}}</span><el-icon class="el-icon--right"><arrow-down /></el-icon></span><template #dropdown><el-dropdown-menu><a href="https://afdian.net/@HeyCrab" target="_blank"><el-dropdown-item>打赏螃蟹</el-dropdown-item></a><el-dropdown-item>退出登录</el-dropdown-item></el-dropdown-menu></template></el-dropdown>
+            <el-dropdown><span class="el-dropdown-link"><span id="userName">欢迎您，{{email}}</span><el-icon class="el-icon--right"><arrow-down /></el-icon></span><template #dropdown><el-dropdown-menu><a href="https://afdian.net/@HeyCrab" target="_blank"><el-dropdown-item>打赏螃蟹</el-dropdown-item></a><el-dropdown-item @click="logout">退出登录</el-dropdown-item></el-dropdown-menu></template></el-dropdown>
         </div>
         </el-header>
   
@@ -66,6 +66,15 @@ let listV = ref(null)
 let band = ref(null)
 let time = ref(3)
 let isCreating = ref(false)
+
+const logout = () => {
+  ElMessageBox.confirm('确认退出登录？','退出登录')
+  .then(function(){
+    RemoveCookie('token')
+    router.push('/login')
+    ElMessage.success('您已退出登录')
+  })
+}
 
 const createCode = () => {
   if (a.value == "" || band.value == ""){
