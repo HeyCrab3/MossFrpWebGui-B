@@ -2,7 +2,7 @@
     <el-container class="main-layout">
       <el-aside width="200px">
           <el-menu :default-active="route.path" :router="true">
-            <el-menu-item disabled>MossFrp 管理控制台</el-menu-item>
+            <el-menu-item disabled>MossFrp 控制台</el-menu-item>
             <el-menu-item index="/"><el-icon><house/></el-icon>主页</el-menu-item>
             <el-menu-item index="/status"><el-icon><Cpu /></el-icon>节点状态</el-menu-item>
             <el-menu-item index="/code"><el-icon><IconMenu /></el-icon>激活码列表</el-menu-item>
@@ -22,7 +22,7 @@
               <template #dropdown>
               </template>
             </el-dropdown>
-            <el-dropdown><span class="el-dropdown-link"><span id="userName">欢迎您，{{email}}</span><el-icon class="el-icon--right"><arrow-down /></el-icon></span><template #dropdown><el-dropdown-menu><a href="https://afdian.net/@HeyCrab" target="_blank"><el-dropdown-item>打赏螃蟹</el-dropdown-item></a><el-dropdown-item @click="logout">退出登录</el-dropdown-item></el-dropdown-menu></template></el-dropdown>
+            <el-dropdown><span class="el-dropdown-link"><span id="userName">欢迎您，{{username}}</span><el-icon class="el-icon--right"><arrow-down /></el-icon></span><template #dropdown><el-dropdown-menu><a href="https://afdian.net/@HeyCrab" target="_blank"><el-dropdown-item>打赏螃蟹</el-dropdown-item></a><el-dropdown-item @click="logout">退出登录</el-dropdown-item></el-dropdown-menu></template></el-dropdown>
         </div>
         </el-header>
   
@@ -32,7 +32,11 @@
             <el-alert title="测试版WebUI可能会存在部分问题，请加群反馈" type="warning" style="margin-left:20px;width:50%;margin-top:10px" show-icon />
             <el-card class="card">
                 <span>欢迎回来，</span>
-                <h2>{{username}}</h2>
+                <i class="el-icon-edit"><h2>{{username}}</h2></i>
+            </el-card>
+            <el-card class="card">
+                <span>用户UID</span>
+                <h2>{{userId}}<a href="/#/settings"><el-icon><ArrowRight /></el-icon></a></h2>
             </el-card>
             <el-card class="card">
                 <span>金币</span>
@@ -42,10 +46,7 @@
                 <span>银币</span>
                 <h2>{{silver}}<a href="/#/store"><el-icon><ArrowRight /></el-icon></a></h2>
             </el-card>
-            <el-card class="card">
-                <span>用户ID</span>
-                <h2>{{userId}}<a href="/#/settings"><el-icon><ArrowRight /></el-icon></a></h2>
-            </el-card>
+
           </el-scrollbar>
         </el-main>
       </el-container>

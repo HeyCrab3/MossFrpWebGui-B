@@ -2,7 +2,7 @@
     <el-container class="main-layout">
       <el-aside width="200px">
           <el-menu :default-active="route.path" :router="true">
-            <el-menu-item disabled>MossFrp 管理控制台</el-menu-item>
+            <el-menu-item disabled>MossFrp 控制台</el-menu-item>
             <el-menu-item index="/"><el-icon><house/></el-icon>主页</el-menu-item>
             <el-menu-item index="/status"><el-icon><Cpu /></el-icon>节点状态</el-menu-item>
             <el-menu-item index="/code"><el-icon><IconMenu /></el-icon>激活码列表</el-menu-item>
@@ -47,7 +47,7 @@ import { ElMessage } from 'element-plus';
 import router from './../router';
 const route = useRoute();
 var dialogVisible = ref(false)
-let username = '**'
+let username = ref('**');
 
 const logout = () => {
   ElMessageBox.confirm('确认退出登录？','退出登录')
@@ -63,6 +63,7 @@ axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
     const ResponseCode = GetStatusCode(Response);
     if (isPassedVerifictionInt(ResponseCode,200) == true){
         var userData = Response['data']['userInfo']
+        username.value = userData['username']
         var email = userData['email']
         document.getElementById('userName').innerHTML = `欢迎您，${email}`;
     }else{

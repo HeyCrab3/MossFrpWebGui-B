@@ -2,7 +2,7 @@
     <el-container class="main-layout">
       <el-aside width="200px">
           <el-menu :default-active="route.path" :router="true">
-            <el-menu-item disabled>MossFrp 管理控制台</el-menu-item>
+            <el-menu-item disabled>MossFrp 控制台</el-menu-item>
             <el-menu-item index="/"><el-icon><house/></el-icon>主页</el-menu-item>
             <el-menu-item index="/status"><el-icon><Cpu /></el-icon>节点状态</el-menu-item>
             <el-menu-item index="/code"><el-icon><IconMenu /></el-icon>激活码列表</el-menu-item>
@@ -22,13 +22,13 @@
               <template #dropdown>
               </template>
             </el-dropdown>
-            <el-dropdown><span class="el-dropdown-link"><span id="userName">欢迎您，{{email}}</span><el-icon class="el-icon--right"><arrow-down /></el-icon></span><template #dropdown><el-dropdown-menu><a href="https://afdian.net/@HeyCrab" target="_blank"><el-dropdown-item>打赏螃蟹</el-dropdown-item></a><el-dropdown-item @click="logout">退出登录</el-dropdown-item></el-dropdown-menu></template></el-dropdown>
+            <el-dropdown><span class="el-dropdown-link"><span id="userName">欢迎您，{{username}}</span><el-icon class="el-icon--right"><arrow-down /></el-icon></span><template #dropdown><el-dropdown-menu><a href="https://afdian.net/@HeyCrab" target="_blank"><el-dropdown-item>打赏螃蟹</el-dropdown-item></a><el-dropdown-item @click="logout">退出登录</el-dropdown-item></el-dropdown-menu></template></el-dropdown>
         </div>
         </el-header>
   
         <el-main>
           <el-scrollbar>
-            <h2>激活码列表<el-button @click="router.push('/code/add')">新建穿透码</el-button></h2>
+            <h2>激活码列表  <el-button @click="router.push('/code/add')">新建穿透码</el-button></h2>  
             <input id="copy" style="visibility: hidden"/>
             <el-table v-loading="isTableLoading" empty-text="没有激活码诶 快去创建一个罢" :data="tableData" style="width: 90%;height:400px;margin-left:20px" max-height="250">
               <el-table-column fixed prop="node" label="节点" width="150" />
@@ -41,30 +41,9 @@
               <el-table-column prop="status" label="状态" width="120" ><template #default="scope"><el-tag>{{scope.row.status}}</el-tag></template></el-table-column>
               <el-table-column fixed="right" label="操作">
                 <template #default="scope">
-                  <el-button
-                    link
-                    type="primary"
-                    size="small"
-                    @click.prevent="bandCode(scope.$index)"
-                  >
-                    升配
-                  </el-button>
-                  <el-button
-                    link
-                    type="primary"
-                    size="small"
-                    @click.prevent="renewCode(scope.$index)"
-                  >
-                    续期
-                  </el-button>
-                  <el-button
-                    link
-                    type="primary"
-                    size="small"
-                    @click.prevent="deleteCode(scope.$index)"
-                  >
-                    删除
-                  </el-button>
+                <el-button style="margin-left:2px;margin-top:4px" type="success" size="small" @click.prevent="bandCode(scope.$index)">升配</el-button>
+                <el-button style="margin-left:2px;margin-top:4px" type="primary" size="small" @click.prevent="renewCode(scope.$index)">续期</el-button>
+                <el-button style="margin-left:2px;margin-top:4px" type="danger" size="small" @click.prevent="deleteCode(scope.$index)">删除</el-button> 
                 </template>
               </el-table-column>
             </el-table>
@@ -84,6 +63,7 @@ import axios from 'axios';
 import { Action, ElMessage, ElMessageBox } from 'element-plus';
 import router from '../router';
 const route = useRoute();
+let username = ref('**');
 let email = ref('**')
 let tableData = ref(null);
 let isTableLoading = ref(true);
@@ -191,6 +171,10 @@ axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
     const ResponseCode = GetStatusCode(Response);
     if (isPassedVerifictionInt(ResponseCode,200) == true){
         var userData = Response['data']['userInfo']
+        username.value = userData['username']
+        gold.value = userData['gold']
+        silver.value = userData['silver']
+        userId.value = userData['userID']
         email.value = userData['email']
     }else{
         if (ResponseCode == 423){
