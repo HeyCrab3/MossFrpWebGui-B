@@ -28,22 +28,8 @@
   
         <el-main>
           <el-scrollbar>
-            <el-card class="card">
-                <span>欢迎回来，</span>
-                <h2>{{username}}</h2>
-            </el-card>
-            <el-card class="card">
-                <span>金币</span>
-                <h2>{{gold}}<a href="/#/store"><el-icon><ArrowRight /></el-icon></a></h2>
-            </el-card>
-            <el-card class="card">
-                <span>银币</span>
-                <h2>{{silver}}<a href="/#/store"><el-icon><ArrowRight /></el-icon></a></h2>
-            </el-card>
-            <el-card class="card">
-                <span>用户ID</span>
-                <h2>{{userId}}<a href="/#/settings"><el-icon><ArrowRight /></el-icon></a></h2>
-            </el-card>
+            <h2>个人设置</h2>
+            <span style="margin-left:20px">暂缓制作，请前往群内更新信息</span>
           </el-scrollbar>
         </el-main>
       </el-container>
@@ -51,29 +37,22 @@
 </template>
   
 <script lang="ts" setup>
-import { Menu as IconMenu, House,Setting, Cpu, Shop, Wallet, ArrowDown,ArrowRight } from '@element-plus/icons-vue';
+import { Menu as IconMenu, House,Setting, Cpu, Shop, Wallet, ArrowDown,ArrowRight, Delete } from '@element-plus/icons-vue';
 import { useRoute } from 'vue-router';
-import { ref } from 'vue';
-import { GetStatusCode, isPassedVerifictionInt } from '../modules/StatusCodeParser';
-import { GetCookie } from '../modules/CookieHelper';
+import { ref, markRaw } from 'vue';
+import { GetStatusCode, isPassedVerifictionInt } from '../../modules/StatusCodeParser';
+import { GetCookie } from '../../modules/CookieHelper';
 import axios from 'axios';
-import { ElMessage } from 'element-plus';
-import router from './router';
+import { Action, ElMessage, ElMessageBox } from 'element-plus';
+import router from '../router';
 const route = useRoute();
-let username = ref('**');
-let gold = ref('--');
-let silver = ref('--')
-let userId = ref('0')
 let email = ref('**')
+
 axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
 .then(function(Response){
     const ResponseCode = GetStatusCode(Response);
     if (isPassedVerifictionInt(ResponseCode,200) == true){
         var userData = Response['data']['userInfo']
-        username.value = userData['username']
-        gold.value = userData['gold']
-        silver.value = userData['silver']
-        userId.value = userData['userID']
         email.value = userData['email']
     }else{
         if (ResponseCode == 423){
@@ -121,6 +100,10 @@ axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
   justify-content: center;
   right: 20px;
   height:100%;
+}
+
+.main-layout h2{
+  margin-left: 20px;
 }
 </style>
   

@@ -22,28 +22,14 @@
               <template #dropdown>
               </template>
             </el-dropdown>
-            <el-dropdown><span class="el-dropdown-link"><span id="userName">欢迎您，{{email}}</span><el-icon class="el-icon--right"><arrow-down /></el-icon></span><template #dropdown><el-dropdown-menu><a href="https://afdian.net/@HeyCrab" target="_blank"><el-dropdown-item>打赏螃蟹</el-dropdown-item></a><el-dropdown-item>退出登录</el-dropdown-item></el-dropdown-menu></template></el-dropdown>
+            <el-dropdown><span class="el-dropdown-link"><span id="userName">欢迎您，{{username}}</span><el-icon class="el-icon--right"><arrow-down /></el-icon></span><template #dropdown><el-dropdown-menu><a href="https://afdian.net/@HeyCrab" target="_blank"><el-dropdown-item>打赏螃蟹</el-dropdown-item></a><el-dropdown-item>退出登录</el-dropdown-item></el-dropdown-menu></template></el-dropdown>
         </div>
         </el-header>
-  
         <el-main>
           <el-scrollbar>
-            <el-card class="card">
-                <span>欢迎回来，</span>
-                <h2>{{username}}</h2>
-            </el-card>
-            <el-card class="card">
-                <span>金币</span>
-                <h2>{{gold}}<a href="/#/store"><el-icon><ArrowRight /></el-icon></a></h2>
-            </el-card>
-            <el-card class="card">
-                <span>银币</span>
-                <h2>{{silver}}<a href="/#/store"><el-icon><ArrowRight /></el-icon></a></h2>
-            </el-card>
-            <el-card class="card">
-                <span>用户ID</span>
-                <h2>{{userId}}<a href="/#/settings"><el-icon><ArrowRight /></el-icon></a></h2>
-            </el-card>
+            <h2>捐助螃蟹</h2>
+            <span style="margin-left: 20px;">你的捐助是我开发最大的动力！</span>
+            <iframe style="margin-left:10px; width:70%;height:701px;border:0" src="https://afdian.net/a/HeyCrab"></iframe>
           </el-scrollbar>
         </el-main>
       </el-container>
@@ -54,27 +40,20 @@
 import { Menu as IconMenu, House,Setting, Cpu, Shop, Wallet, ArrowDown,ArrowRight } from '@element-plus/icons-vue';
 import { useRoute } from 'vue-router';
 import { ref } from 'vue';
-import { GetStatusCode, isPassedVerifictionInt } from '../modules/StatusCodeParser';
-import { GetCookie } from '../modules/CookieHelper';
+import { GetStatusCode, isPassedVerifictionInt } from '../../modules/StatusCodeParser';
+import { GetCookie } from '../../modules/CookieHelper';
 import axios from 'axios';
 import { ElMessage } from 'element-plus';
-import router from './router';
+import router from './../router';
 const route = useRoute();
-let username = ref('**');
-let gold = ref('--');
-let silver = ref('--')
-let userId = ref('0')
-let email = ref('**')
+let username = '**'
 axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
 .then(function(Response){
     const ResponseCode = GetStatusCode(Response);
     if (isPassedVerifictionInt(ResponseCode,200) == true){
         var userData = Response['data']['userInfo']
-        username.value = userData['username']
-        gold.value = userData['gold']
-        silver.value = userData['silver']
-        userId.value = userData['userID']
-        email.value = userData['email']
+        var email = userData['email']
+        document.getElementById('userName').innerHTML = `欢迎您，${email}`;
     }else{
         if (ResponseCode == 423){
             ElMessage.error("IP黑名单，请稍后再试")
@@ -110,6 +89,7 @@ axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
 
 .card a{
     color:#FFF;
+    font-size:1.2em
 }
 
 .main-layout .el-main {
@@ -121,6 +101,10 @@ axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
   justify-content: center;
   right: 20px;
   height:100%;
+}
+
+.main-layout h2{
+    margin-left: 20px
 }
 </style>
   

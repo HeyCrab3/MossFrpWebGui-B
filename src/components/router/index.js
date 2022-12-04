@@ -4,6 +4,9 @@ import loginView from '../user/login.vue';
 import indexView from '../index.vue';
 import nodeView from '../frp/node.vue'
 import storeView from '../frp/store.vue'
+import listView from '../frp/list.vue'
+import codeNewView from '../frp/new.vue'
+import settingsView from '../user/settings.vue'
 const routes = [
     {
         path: '/login',
@@ -24,6 +27,21 @@ const routes = [
         path: '/store',
         name: 'Store',
         component: storeView
+    },
+    {
+        path: '/code',
+        name: 'Code',
+        component: listView
+    },
+    {
+        path: '/code/add',
+        name: 'NewCode',
+        component: codeNewView
+    },
+    {
+        path: '/settings',
+        name: 'Settings',
+        component: settingsView
     }
 ];
 const router = createRouter({history: createWebHashHistory(),routes: routes});

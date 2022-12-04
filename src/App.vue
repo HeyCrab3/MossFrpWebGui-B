@@ -1,6 +1,11 @@
+<script>
+import { ref } from 'vue'
+const language = ref('zh-cn')
+</script>
 <template>
-  <router-view></router-view>
+  <el-config-provider :locale="language"><router-view></router-view></el-config-provider>
 </template>
+
 <style>
 :root{
   font-family: 'HYWenHei 75W',Inter, Avenir, Helvetica, Arial, sans-serif;

@@ -8,7 +8,7 @@
         <el-input ref="v2" type="password" v-model="passWord" placeholder="密码" />
         <el-button @click="LoginButtonClicked" type="primary" size="large" color="#114514">登录</el-button>
         <el-button type="text" @click="dialogVisible = true">忘记密码？</el-button>
-        <el-button type="text">注册账户</el-button>
+        <el-button disabled aria-label="暂缓制作" type="text">注册账户</el-button>
         <el-dialog v-model="dialogVisible" title="忘记密码？" width="30%"><span>如果您记得自己的密码却显示密码错误，这是由于后端密码加密格式的更改，请在<strong>私信</strong>中回复指令 #更新信息 重置密码才能登陆成功</span><br/><span>如果您忘记了密码，请在<strong>私信</strong>中回复指令 #更新信息 重置密码。</span><template #footer><span class="dialog-footer"><el-button type="primary" size="large" color="#114514" @click="dialogVisible = false">好</el-button></span></template></el-dialog>
     </div>
 </template>
@@ -40,7 +40,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import router from '../router/index'
-import { ElMessage, ElNotification } from 'element-plus';
+import { ElMessage, ElNotification, ElLoading } from 'element-plus';
 import axios from 'axios';
 import { GetStatusCode,isPassedVerifictionInt } from '../../modules/StatusCodeParser.js';
 import { SetCookie } from '../../modules/CookieHelper.js';
@@ -52,8 +52,11 @@ const LoginButtonClicked = () => {
     if (userName.value == '' && passWord.value ==''){
         ElMessage.error('用户名和密码不可为空')
     }else{
+        const loginContainerInstance = document.getElementById("loginBox");
+        const loadingInstance = ElLoading.service({target: loginContainerInstance, text: "坐和放宽", background: '#FFFFFF'});
         axios.get(`/api?type=login&loginType=QQ&account=${userName.value}&password=${passWord.value}`)
         .then(function(Response){
+            loadingInstance.close();
             const ResponseCode = GetStatusCode(Response)
             if (isPassedVerifictionInt(ResponseCode,200) == true){
                 SetCookie('token',Response['data']['token'])
