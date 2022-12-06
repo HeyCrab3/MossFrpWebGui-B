@@ -32,6 +32,7 @@
         margin-right: 40px;
         border-radius:10px;
         box-shadow: 0px 0px 20px #00000020;
+        transform: translate(-200px);
     }
     #loginBox .el-input,#loginBox .el-button{
         margin-top:20px;
@@ -53,7 +54,7 @@ const LoginButtonClicked = () => {
         ElMessage.error('用户名和密码不可为空')
     }else{
         const loginContainerInstance = document.getElementById("loginBox");
-        const loadingInstance = ElLoading.service({target: loginContainerInstance, text: "坐和放宽", background: '#FFFFFF'});
+        const loadingInstance = ElLoading.service({target: loginContainerInstance, text: "少女祈祷中...", background: '#FFFFFF'});
         axios.get(`/api?type=login&loginType=QQ&account=${userName.value}&password=${passWord.value}`)
         .then(function(Response){
             loadingInstance.close();

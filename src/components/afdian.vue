@@ -45,7 +45,7 @@ import axios from 'axios';
 import { ElMessage } from 'element-plus';
 import router from './router';
 const route = useRoute();
-let username = '**'
+let username = ref('**');
 
 const logout = () => {
   ElMessageBox.confirm('确认退出登录？','退出登录')
@@ -61,6 +61,7 @@ axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
     const ResponseCode = GetStatusCode(Response);
     if (isPassedVerifictionInt(ResponseCode,200) == true){
         var userData = Response['data']['userInfo']
+        username.value = userData['username']
         var email = userData['email']
         document.getElementById('userName').innerHTML = `欢迎您，${email}`;
     }else{
