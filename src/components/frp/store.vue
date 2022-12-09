@@ -28,7 +28,7 @@
         <el-main>
           <el-scrollbar>
             <h2>商店 <el-button type="primary" @click="dialogVisible = true">如何激活卡密？</el-button></h2>
-            <iframe style="margin-left:10px; width:70%;height:701px;border:0" src="http://www.mcrmb.com/fk/24184"></iframe>
+            <iframe style="margin-left:10px; width:70%;height:701px;border:0" src="https://www.mcrmb.com/fk/24184"></iframe>
           </el-scrollbar>
         </el-main>
       </el-container>

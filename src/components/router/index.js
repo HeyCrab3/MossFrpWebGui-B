@@ -8,6 +8,10 @@ import listView from '../frp/list.vue'
 import codeNewView from '../frp/new.vue'
 import settingsView from '../user/settings.vue'
 import donateView from '../afdian.vue'
+import mobileLoginView from '../user/mlogin.vue'
+import mobileIndexView from '../mindex.vue'
+import mobileListView from '../frp/mlist.vue'
+import mobileCodeView from '../frp/mcode.vue'
 const routes = [
     {
         path: '/login',
@@ -48,6 +52,26 @@ const routes = [
         path: '/afdian',
         name: 'Donate',
         component: donateView
+    },
+    {
+        path: '/mlogin',
+        name: 'Mobile Login',
+        component: mobileLoginView
+    },
+    {
+        path: '/m',
+        name: 'MobileIndex',
+        component: mobileIndexView
+    },
+    {
+        path: '/m/list',
+        name: 'MobileList',
+        component: mobileListView
+    },
+    {
+        path: '/m/code',
+        name: 'MobileCode',
+        component: mobileCodeView
     }
 ];
 const router = createRouter({history: createWebHashHistory(),routes: routes});
