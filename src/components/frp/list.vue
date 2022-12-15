@@ -28,9 +28,9 @@
   
         <el-main>
           <el-scrollbar>
-            <h2>激活码列表  <el-button @click="router.push('/code/add')">新建穿透码</el-button></h2>  
+            <h2>激活码列表  <el-button  @click="router.push('/code/add')">新建穿透码</el-button></h2>  
             <input id="copy" style="visibility: hidden"/>
-            <el-table v-loading="isTableLoading" empty-text="没有激活码诶 快去创建一个罢" :data="tableData" style="width: 90%;height:400px;margin-left:20px" max-height="250">
+            <el-table v-loading="isTableLoading" empty-text="没有激活码诶 快去创建一个罢" :data="tableData" style="width: 90%;height:100%;margin-left:20px" max-height="100%">
               <el-table-column fixed prop="node" label="节点" width="150" />
               <el-table-column prop="activity" label="活动创建码" width="120" />
               <el-table-column prop="number" label="序号" width="120" />
@@ -100,7 +100,7 @@ const deleteCode = (index: number) => {
                   ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
               }
               else if(ResposeCode == "401"){
-                  ElMessage.error("未登录")
+                  ElMessage.error("您还没有登录噢！")
                   router.push('/login')
               }
               else{
@@ -129,7 +129,7 @@ const renewCode = (index: number) => {
                   ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
               }
               else if(ResposeCode == "401"){
-                  ElMessage.error("未登录")
+                  ElMessage.error("您还没有登录噢！")
                   router.push('/login')
               }
               else{
@@ -155,7 +155,7 @@ const bandCode = (index: number) => {
                   ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
               }
               else if(ResposeCode == "401"){
-                  ElMessage.error("未登录")
+                  ElMessage.error("您还没有登录噢！")
                   router.push('/login')
               }
               else{
@@ -180,7 +180,7 @@ axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
         if (ResponseCode == 423){
             ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
         }else{
-            ElMessage.error("未登录")
+            ElMessage.error("您还没有登录噢！")
             router.push('/login')
         }
     }
@@ -226,7 +226,7 @@ axios.get(`/api?type=userCode&token=${GetCookie('token')}`)
         if (ResponseCode == 423){
             ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
         }else{
-            ElMessage.error("未登录")
+            ElMessage.error("您还没有登录噢！")
             router.push('/login')
         }
     }
@@ -234,6 +234,10 @@ axios.get(`/api?type=userCode&token=${GetCookie('token')}`)
 </script>
   
 <style scoped>
+.el-button{
+    margin-left: 69.4%;
+    margin-top: -0.1%;
+}
 .main-layout .el-header {
   position: relative;
 }

@@ -28,7 +28,7 @@
         <el-main>
           <el-scrollbar>
             <h2>商店 <el-button type="primary" @click="dialogVisible = true">如何激活卡密？</el-button></h2>
-            <iframe style="margin-left:10px; width:70%;height:701px;border:0" src="https://www.mcrmb.com/fk/24184"></iframe>
+            <iframe style="margin-left:10px; width:100%;height:1000px;border:0" src="https://www.mcrmb.com/fk/24184"></iframe>
           </el-scrollbar>
         </el-main>
       </el-container>
@@ -70,7 +70,7 @@ axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
         if (ResponseCode == 423){
             ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
         }else{
-            ElMessage.error("未登录")
+            ElMessage.error("您还没有登录噢！")
             router.push('/login')
         }
     }
@@ -78,6 +78,10 @@ axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
 </script>
   
 <style scoped>
+.el-button{
+    margin-left: 75%;
+    margin-top: -0.1%;
+}
 .main-layout .el-header {
   position: relative;
 }

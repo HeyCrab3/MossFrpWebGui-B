@@ -100,7 +100,7 @@ const createCode = () => {
               ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
           }
           else if(ResponseCode == 401){
-              ElMessage.error("未登录")
+              ElMessage.error("您还没有登录噢！")
               router.push('/login')
           }
           else{
@@ -128,7 +128,7 @@ axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
         if (ResponseCode == 423){
             ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
         }else{
-            ElMessage.error("未登录")
+            ElMessage.error("您还没有登录噢！")
             router.push('/login')
         }
     }
@@ -154,7 +154,7 @@ axios.get(`/api?type=allNode&token=${GetCookie('token')}`)
         if (ResponseCode == 423){
             ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
         }else{
-            ElMessage.error("未登录")
+            ElMessage.error("您还没有登录噢！")
             router.push('/login')
         }
     }
