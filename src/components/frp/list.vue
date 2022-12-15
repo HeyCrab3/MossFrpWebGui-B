@@ -97,7 +97,7 @@ const deleteCode = (index: number) => {
               window.location.reload();
           }else{
               if (ResponseCode == 423){
-                  ElMessage.error("IP黑名单，请稍后再试")
+                  ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
               }
               else if(ResposeCode == "401"){
                   ElMessage.error("未登录")
@@ -126,7 +126,7 @@ const renewCode = (index: number) => {
               window.location.reload();
           }else{
               if (ResponseCode == 423){
-                  ElMessage.error("IP黑名单，请稍后再试")
+                  ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
               }
               else if(ResposeCode == "401"){
                   ElMessage.error("未登录")
@@ -152,7 +152,7 @@ const bandCode = (index: number) => {
               window.location.reload();
           }else{
               if (ResponseCode == 423){
-                  ElMessage.error("IP黑名单，请稍后再试")
+                  ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
               }
               else if(ResposeCode == "401"){
                   ElMessage.error("未登录")
@@ -178,7 +178,7 @@ axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
         email.value = userData['email']
     }else{
         if (ResponseCode == 423){
-            ElMessage.error("IP黑名单，请稍后再试")
+            ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
         }else{
             ElMessage.error("未登录")
             router.push('/login')
@@ -224,7 +224,7 @@ axios.get(`/api?type=userCode&token=${GetCookie('token')}`)
       isTableLoading = false;
     }else{
         if (ResponseCode == 423){
-            ElMessage.error("IP黑名单，请稍后再试")
+            ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
         }else{
             ElMessage.error("未登录")
             router.push('/login')

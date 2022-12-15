@@ -1,6 +1,7 @@
 import { createRouter } from "vue-router";
 import { createWebHashHistory } from "vue-router";
 import loginView from '../user/login.vue';
+import regView from '../user/register.vue';
 import indexView from '../index.vue';
 import nodeView from '../frp/node.vue'
 import storeView from '../frp/store.vue'
@@ -17,6 +18,11 @@ const routes = [
         path: '/login',
         name: 'Login',
         component: loginView
+    },
+    {
+        path: '/register',
+        name: 'Register',
+        component: regView
     },
     {
         path: '/',
