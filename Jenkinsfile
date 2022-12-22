@@ -4,7 +4,7 @@ pipeline {
     stage('Pull Git') {
       steps {
         echo 'Syncing with GitHub'
-        git(url: 'https://github.com/HeyCrab3/MossFrpWebGui-B.git', branch: 'master', changelog: true)
+        git(url: 'https://gh.flyinbug.top/gh/https://github.com/HeyCrab3/MossFrpWebGui-B.git', branch: 'master', changelog: true)
       }
     }
 
