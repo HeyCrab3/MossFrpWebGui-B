@@ -20,12 +20,12 @@ const language = ref('zh-cn')
 export default {
   name: "App",
   created() {
-    console.log('[Akasha Core] 开始环境判断')
+    console.log('开始环境判断...')
     if (this._isMobile()) {
-      console.log("手机端，重定向到手机用户页面");
+      console.log("检测为手机端，将重定向到手机用户页面...");
       this.$router.replace('/m');
     } else {
-      console.log("电脑端，不做判断");
+      console.log("检测为电脑端，不做判断...");
     }
   },
   methods: {

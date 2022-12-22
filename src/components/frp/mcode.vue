@@ -53,7 +53,7 @@ axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
         if (ResponseCode == 423){
             showFailToast('IP黑名单，请稍后重试')
         }else{
-            showFailToast('未登录')
+            showFailToast('您还没有登录噢！')
             router.push('/login')
         }
     }
@@ -75,7 +75,7 @@ axios.get(`/api?type=userCode&token=${GetCookie('token')}&getAsList=true`)
         if (ResponseCode == 423){
             showFailToast('IP黑名单，请稍后重试')
         }else{
-            showFailToast('未登录')
+            showFailToast('您还没有登录噢！')
             router.push('/login')
         }
     }

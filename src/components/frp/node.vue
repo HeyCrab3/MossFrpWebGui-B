@@ -8,7 +8,6 @@
             <el-menu-item index="/code"><el-icon><IconMenu /></el-icon>激活码列表</el-menu-item>
             <el-menu-item index="/store"><el-icon><Shop /></el-icon>商店</el-menu-item>
             <el-menu-item index="/settings"><el-icon><Setting /></el-icon>个人设置</el-menu-item>
-            <el-menu-item index="/afdian"><el-icon><Wallet /></el-icon>螃蟹的爱发电</el-menu-item>
           </el-menu>
       </el-aside>
   
@@ -28,13 +27,14 @@
         <el-main>
           <el-scrollbar>
             <h2>节点状态</h2>
-            <el-table v-loading="isTableLoading" empty-text="你是怎么卡出来的呢？这里不应该是空的。" :data="tableData" style="width: 90%;height:400px;margin-left:20px" max-height="250">
+
+            <el-table v-loading="isTableLoading" empty-text="你是怎么卡出来的呢？这里不应该是空的。" :data="tableData" style="width: 90%;height:100%;margin-left:20px" max-height="100%">
               <el-table-column fixed prop="address" label="节点名称" width="150" />
               <el-table-column prop="activity" label="活动状态" width="120" />
               <el-table-column prop="band-max-per" label="节点最大上行带宽" width="120" />
               <el-table-column prop="coin" label="需求货币种类" width="120" />
               <el-table-column prop="enable" label="是否允许创建新的穿透码" width="120" />
-              <el-table-column prop="load" label="实时负载" width="120" />
+              <el-table-column prop="load" label="实时负载" width="150" />
               <el-table-column prop="price" label="价格" width="120" />
               <el-table-column prop="info" label="备注" width="120" />
             </el-table>
@@ -77,9 +77,9 @@ axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
         document.getElementById('userName').innerHTML = `欢迎您，${email}`;
     }else{
         if (ResponseCode == 423){
-            ElMessage.error("IP黑名单，请稍后再试")
+            ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
         }else{
-            ElMessage.error("未登录")
+            ElMessage.error("您还没有登录噢！")
             router.push('/login')
         }
     }
@@ -100,9 +100,9 @@ axios.get(`/api?type=allNode&token=${GetCookie('token')}`)
       isTableLoading = false;
     }else{
         if (ResponseCode == 423){
-            ElMessage.error("IP黑名单，请稍后再试")
+            ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
         }else{
-            ElMessage.error("未登录")
+            ElMessage.error("您还没有登录噢！")
             router.push('/login')
         }
     }

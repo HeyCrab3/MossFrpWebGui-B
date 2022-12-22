@@ -43,7 +43,7 @@ import { showFailToast, showSuccessToast, showLoadingToast } from 'vant';
     let password = ref(null)
     const LoginButtonClicked = () => {
     if (qq.value == '' && password.value ==''){
-        showFailToast('用户名和密码不能为空')
+        showFailToast('用户名或密码不可为空噢！🙅‍♂️')
     }else{
         showLoadingToast({ message: '少女祈祷中...', forbidClick: true })
         axios.get(`/api?type=login&loginType=QQ&account=${qq.value}&password=${password.value}`)
@@ -51,18 +51,18 @@ import { showFailToast, showSuccessToast, showLoadingToast } from 'vant';
             const ResponseCode = GetStatusCode(Response)
             if (isPassedVerifictionInt(ResponseCode,200) == true){
                 SetCookie('token',Response['data']['token'])
-                showSuccessToast('登陆成功')
+                showSuccessToast('欢迎回家 ，博士🥰')
                 router.push('/m')
             }else{
                 if (ResponseCode == 423){
-                    showFailToast('IP黑名单，请稍后再试')
+                    showFailToast('⚡您请求的太快啦！请一分钟后再试噢 ！⚡')
                 }else{
-                    showFailToast('用户名或密码错误')
+                    showFailToast('唔，你的账号密码是不是错了捏🤔')
                 }
             }
         })
         .catch(function(){
-            ElNotification.error({title: "错误", message: "无法连接到后端服务，请联系墨守"})
+            ElNotification.error({title: "错误", message: "唔，API 貌似无法访问呢！"})
         })
     }
 }
