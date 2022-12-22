@@ -24,6 +24,7 @@ const routes = [
         name: 'Register',
         component: regView
     },
+    //Crab：您写了您妈呢
     {
         path: '/',
         name: 'Index',

@@ -1,14 +1,14 @@
 <template>
-  <div class="background">
+  <div class="background" v-loading="isLoading">
     <div id="loginBox" v-loading="isLoading">
         <h2 style="font-size:var(--el-font-size-extra-large)">请登陆您的账户</h2>
         <el-input ref="v1" v-model="userName" placeholder-color="#ffebcd" placeholder="邮箱" />
         <el-input ref="v2" type="password" v-model="passWord" placeholder="密码" />
         <el-button @click="LoginButtonClicked" type="primary" size="large" color="#114514">登录</el-button>
         <el-button type="text" @click="dialogVisible = true" color="#114514">忘记密码？</el-button>
-        <el-button disabled aria-label="暂缓制作" type="text">注册账户</el-button>
-        <el-dialog v-model="dialogVisible" title="忘记密码？" width="30%"><span>如果您记得自己的密码却显示密码错误，这是由于后端密码加密格式的更改，请在<strong>私信</strong>中回复指令 #更新信息 重置密码才能欢迎回家 ，博士🥰</span><br/><span>如果您忘记了密码，请在<strong>私信</strong>中回复指令 #更新信息 重置密码。</span><template #footer><span class="dialog-footer"><el-button type="primary" size="large" color="#114514" @click="dialogVisible = false">好</el-button></span></template></el-dialog>
+        <el-button @click="RegButtonClicked" type="text">注册账户</el-button>
     </div>
+    <el-dialog v-model="dialogVisible" title="忘记密码？" width="30%"><span>如果您记得自己的密码却显示密码错误，这是由于后端密码加密格式的更改，请在<strong>私信</strong>中回复指令 #更新信息 重置密码才能欢迎回家 ，博士🥰</span><br/><span>如果您忘记了密码，请在<strong>私信</strong>中回复指令 #更新信息 重置密码。</span><template #footer><span class="dialog-footer"><el-button type="primary" size="large" color="#114514" @click="dialogVisible = false">好</el-button></span></template></el-dialog>
 </div>
 </template>
 <style>
@@ -24,7 +24,6 @@
         float: left
     }
     #loginBox{
-
         color: blanchedalmond;
         float:right;
         width:20%;
@@ -67,7 +66,11 @@ const userName = ref('')
 const passWord = ref('')
 const dialogVisible = ref(false)
 const isLoading = ref(false);
+const RegButtonClicked = () => {
+    router.push('/register')
+}
 const LoginButtonClicked = () => {
+
     if (userName.value == '' && passWord.value ==''){
         ElMessage.error('用户名或密码不可为空噢！🙅‍♂️')
     }else{

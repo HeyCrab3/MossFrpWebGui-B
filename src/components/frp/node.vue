@@ -8,7 +8,6 @@
             <el-menu-item index="/code"><el-icon><IconMenu /></el-icon>激活码列表</el-menu-item>
             <el-menu-item index="/store"><el-icon><Shop /></el-icon>商店</el-menu-item>
             <el-menu-item index="/settings"><el-icon><Setting /></el-icon>个人设置</el-menu-item>
-            <el-menu-item index="/afdian"><el-icon><Wallet /></el-icon>螃蟹的爱发电</el-menu-item>
           </el-menu>
       </el-aside>
   
@@ -35,7 +34,7 @@
               <el-table-column prop="band-max-per" label="节点最大上行带宽" width="120" />
               <el-table-column prop="coin" label="需求货币种类" width="120" />
               <el-table-column prop="enable" label="是否允许创建新的穿透码" width="120" />
-              <el-table-column prop="load" label="实时负载" width="120" />
+              <el-table-column prop="load" label="实时负载" width="150" />
               <el-table-column prop="price" label="价格" width="120" />
               <el-table-column prop="info" label="备注" width="120" />
             </el-table>
