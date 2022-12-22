@@ -1,13 +1,6 @@
 pipeline {
   agent any
   stages {
-    stage('Pull Git') {
-      steps {
-        echo 'Syncing with GitHub'
-        git(url: 'https://gh.flyinbug.top/gh/https://github.com/HeyCrab3/MossFrpWebGui-B.git', branch: 'master', changelog: true)
-      }
-    }
-
     stage('Install Dependencies') {
       steps {
         echo 'Installing Dependencies...'
