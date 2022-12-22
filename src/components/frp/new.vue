@@ -8,7 +8,6 @@
             <el-menu-item index="/code"><el-icon><IconMenu /></el-icon>激活码列表</el-menu-item>
             <el-menu-item index="/store"><el-icon><Shop /></el-icon>商店</el-menu-item>
             <el-menu-item index="/settings"><el-icon><Setting /></el-icon>个人设置</el-menu-item>
-            <el-menu-item index="/afdian"><el-icon><Wallet /></el-icon>螃蟹的爱发电</el-menu-item>
           </el-menu>
       </el-aside>
   
@@ -97,10 +96,10 @@ const createCode = () => {
       }else{
         isCreating.value = ref(false)
           if (ResponseCode == 423){
-              ElMessage.error("IP黑名单，请稍后再试")
+              ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
           }
           else if(ResponseCode == 401){
-              ElMessage.error("未登录")
+              ElMessage.error("您还没有登录噢！")
               router.push('/login')
           }
           else{
@@ -126,9 +125,9 @@ axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
         email.value = userData['email']
     }else{
         if (ResponseCode == 423){
-            ElMessage.error("IP黑名单，请稍后再试")
+            ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
         }else{
-            ElMessage.error("未登录")
+            ElMessage.error("您还没有登录噢！")
             router.push('/login')
         }
     }
@@ -152,9 +151,9 @@ axios.get(`/api?type=allNode&token=${GetCookie('token')}`)
       listV.value = nodeList;
     }else{
         if (ResponseCode == 423){
-            ElMessage.error("IP黑名单，请稍后再试")
+            ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
         }else{
-            ElMessage.error("未登录")
+            ElMessage.error("您还没有登录噢！")
             router.push('/login')
         }
     }

@@ -8,7 +8,6 @@
             <el-menu-item index="/code"><el-icon><IconMenu /></el-icon>激活码列表</el-menu-item>
             <el-menu-item index="/store"><el-icon><Shop /></el-icon>商店</el-menu-item>
             <el-menu-item index="/settings"><el-icon><Setting /></el-icon>个人设置</el-menu-item>
-            <el-menu-item index="/afdian"><el-icon><Wallet /></el-icon>螃蟹的爱发电</el-menu-item>
           </el-menu>
       </el-aside>
   
@@ -28,10 +27,15 @@
   
         <el-main>
           <el-scrollbar>
-            <el-alert title="欢迎加入官方群：609996925，螃蟹WebUI群：231254430" type="info" style="margin-left:20px;width: 50%;" show-icon/>
-            <el-alert title="测试版WebUI可能会存在部分问题，请加群反馈" type="warning" style="margin-left:20px;width:50%;margin-top:10px" show-icon />
+            <el-alert
+    title="使用须知"
+    type="warning"
+    description="测试版 WebUI 可能会存在问题捏，请向阳阳或螃蟹反馈！"
+    show-icon
+    style="margin-left:20px;width:84%;margin-top:10px"
+  />  
             <el-card class="card">
-                <span>欢迎回来，</span>
+                <span>欢迎回家，</span>
                 <i class="el-icon-edit"><h2>{{username}}</h2></i>
             </el-card>
             <el-card class="card">
@@ -89,9 +93,9 @@ axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
         email.value = userData['email']
     }else{
         if (ResponseCode == 423){
-            ElMessage.error("IP黑名单，请稍后再试")
+            ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
         }else{
-            ElMessage.error("未登录")
+            ElMessage.error("您还没有登录噢！")
             router.push('/login')
         }
     }

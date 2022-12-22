@@ -66,9 +66,9 @@ axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
         document.getElementById('userName').innerHTML = `欢迎您，${email}`;
     }else{
         if (ResponseCode == 423){
-            ElMessage.error("IP黑名单，请稍后再试")
+            ElMessage.error("⚡您请求的太快啦！请一分钟后再试噢 ！⚡")
         }else{
-            ElMessage.error("未登录")
+            ElMessage.error("您还没有登录噢！")
             router.push('/login')
         }
     }
