@@ -28,10 +28,10 @@
         <el-main>
           <el-scrollbar >
             <h2>激活码列表  <el-button @click="centerDialogVisible = true">新建穿透码</el-button></h2>  
-            <el-dialog v-model="centerDialogVisible"  title="新建穿透码" width="40%" height="30%"  align-center>
+            <el-dialog v-model="centerDialogVisible"  title="新建穿透码" width="40%" height="30%" destroy-on-close center>
               <el-container>
         <el-main>
-          <el-scrollbar v-loading="isCreating">
+          <el-scrollbar >
             <strong style="margin-left: 20px;margin-top:10px;display:block; color: #FF0000;">禁止使用穿透服务搭建以下服务：爆破、漏洞注入、VPN、游戏私服，发现立即封禁隧道</strong>
             <div style="margin-left:20px;">
               <el-row><span class="ml-3 w-35 text-gray-600 inline-flex items-center">节点</span><el-select style="margin-left:20px;margin-top:-6px;" v-model="a" class="m-2" placeholder="选择节点"  no-data-text="这里不应该没有数据"><el-option v-for="item in listV" :key="item.value" :label="item.label" :value="item.value"/></el-select></el-row>
@@ -116,6 +116,7 @@ const createCode = () => {
     .then(function(Response){
       const ResponseCode = GetStatusCode(Response);
       if (isPassedVerifictionInt(ResponseCode,200) == true){
+
           isCreating.value = ref(false)
           ElMessage.success('成功')
           ElNotification.success({
@@ -123,7 +124,6 @@ const createCode = () => {
             dangerouslyUseHTMLString: true,
             message: `穿透码已创建，扣除了${Response['data']['coin']}银币。\n创建穿透码需要一定的时间，建议您前往<a href="https://doca.mossfrp.top" target="_blank">MossFrp 使用文档</a>学习软件的使用方法。`
           })
-          location.reload();
       }else{
         isCreating.value = ref(false)
           if (ResponseCode == 423){

@@ -29,14 +29,14 @@
             <h2>节点状态</h2>
 
             <el-table v-loading="isTableLoading" empty-text="你是怎么卡出来的呢？这里不应该是空的。" :data="tableData" style="width: 90%;height:100%;margin-left:20px" max-height="100%">
-              <el-table-column fixed prop="address" label="节点名称" width="150" />
+              <el-table-column fixed prop="address" label="节点名称" width="150" height="200px" />
               <el-table-column prop="activity" label="活动状态" width="120" />
               <el-table-column prop="band-max-per" label="节点最大上行带宽" width="120" />
               <el-table-column prop="coin" label="需求货币种类" width="120" />
               <el-table-column prop="enable" label="是否允许创建新的穿透码" width="120" />
               <el-table-column prop="load" label="实时负载" width="150" />
               <el-table-column prop="price" label="价格" width="120" />
-              <el-table-column prop="info" label="备注" width="120" />
+              <el-table-column prop="info" label="备注" width="200" />
             </el-table>
           </el-scrollbar>
         </el-main>
@@ -129,6 +129,11 @@ axios.get(`/api?type=allNode&token=${GetCookie('token')}`)
     background: linear-gradient(135deg,#02dd2a,#1ae78b);
     color: #FFF;
     display: inline-block
+}
+
+.el-table tr {
+    background-color: var(--el-table-tr-bg-color);
+    height: 80px;
 }
 
 .card a{
