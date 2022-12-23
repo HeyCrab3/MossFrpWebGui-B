@@ -19,22 +19,6 @@ import { ref } from 'vue'
 const language = ref('zh-cn')
 export default {
   name: "App",
-  created() {
-    console.log('开始环境判断...')
-    if (this._isMobile()) {
-      console.log("检测为手机端，将重定向到手机用户页面...");
-      this.$router.replace('/m');
-    } else {
-      console.log("检测为电脑端，不做判断...");
-    }
-  },
-  methods: {
-    // 判断手机端还是PC端
-    _isMobile() {
-      let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
-      return flag;
-    }
-  },
 };
 
 </script>

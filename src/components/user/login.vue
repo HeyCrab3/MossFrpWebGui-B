@@ -1,5 +1,5 @@
 <template>
-  <div class="background" v-loading="isLoading">
+  <div class="background">
     <div id="loginBox" v-loading="isLoading">
         <h2 style="font-size:var(--el-font-size-extra-large)">请登陆您的账户</h2>
         <el-input ref="v1" v-model="userName" placeholder-color="#ffebcd" placeholder="邮箱" />
@@ -7,6 +7,7 @@
         <el-button @click="LoginButtonClicked" type="primary" size="large" color="#114514">登录</el-button>
         <el-button type="text" @click="dialogVisible = true" color="#114514">忘记密码？</el-button>
         <el-button @click="RegButtonClicked" type="text">注册账户</el-button>
+        <span style="display: block; margin-top: 20px; color: rgb(135,135,135); font-size: 0.7em">Client v1.0.1 | Electron {{ electron_version }} | Chrome {{ chrome_version }} | NodeJS {{ node_version }}</span>
     </div>
     <el-dialog v-model="dialogVisible" title="忘记密码？" width="30%"><span>如果您记得自己的密码却显示密码错误，这是由于后端密码加密格式的更改，请在<strong>私信</strong>中回复指令 #更新信息 重置密码才能欢迎回家 ，博士🥰</span><br/><span>如果您忘记了密码，请在<strong>私信</strong>中回复指令 #更新信息 重置密码。</span><template #footer><span class="dialog-footer"><el-button type="primary" size="large" color="#114514" @click="dialogVisible = false">好</el-button></span></template></el-dialog>
 </div>
@@ -25,14 +26,14 @@
     }
     #loginBox{
         color: blanchedalmond;
-        float:right;
-        width:20%;
+        float: left;
+        width:25%;
         padding:10px 15px;
         margin-top: 13%;
-        height: 40%;
-        margin-right: 25%;
+        height: 60%;
+        margin-left: 20px;
         border-radius:10px;
-        transform: translate(-200px);
+        backdrop-filter: blur(25px);
         background: rgb(46 36 36 / 70%);
         box-shadow: 0px 15px 25px #00000020;
     }
@@ -62,10 +63,14 @@ import { ElMessage, ElNotification, ElLoading } from 'element-plus';
 import axios from 'axios';
 import { GetStatusCode,isPassedVerifictionInt } from '../../modules/StatusCodeParser.js';
 import { SetCookie } from '../../modules/CookieHelper.js';
+import {ipcRenderer} from 'electron'
 const userName = ref('')
 const passWord = ref('')
 const dialogVisible = ref(false)
 const isLoading = ref(false);
+const electron_version = ref(process.versions.electron)
+const chrome_version = ref(process.versions.chrome)
+const node_version = ref(process.versions.node)
 const RegButtonClicked = () => {
     router.push('/register')
 }
