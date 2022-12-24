@@ -5,7 +5,7 @@
             <el-menu-item disabled>MossFrp 控制台</el-menu-item>
             <el-menu-item index="/"><el-icon><house/></el-icon>主页</el-menu-item>
             <el-menu-item index="/status"><el-icon><Cpu /></el-icon>节点状态</el-menu-item>
-            <el-menu-item index="/code"><el-icon><IconMenu /></el-icon>激活码列表</el-menu-item>
+            <el-menu-item index="/code"><el-icon><IconMenu /></el-icon>穿透码列表</el-menu-item>
             <el-menu-item index="/store"><el-icon><Shop /></el-icon>商店</el-menu-item>
             <el-menu-item index="/settings"><el-icon><Setting /></el-icon>个人设置</el-menu-item>
           </el-menu>
@@ -27,7 +27,7 @@
   
         <el-main>
           <el-scrollbar >
-            <h2>激活码列表  <el-button @click="centerDialogVisible = true">新建穿透码</el-button></h2>  
+            <h2>穿透码列表  <el-button @click="centerDialogVisible = true">新建穿透码</el-button></h2>  
             <el-dialog v-model="centerDialogVisible"  title="新建穿透码" width="40%" height="30%" destroy-on-close center>
               <el-container>
         <el-main>
@@ -351,6 +351,10 @@ axios.get(`/api?type=userCode&token=${GetCookie('token')}`)
 </script>
   
 <style scoped>
+.el-table td.el-table__cell div {
+    box-sizing: border-box;
+    height: 100px;
+}
 .dialog-footer button:first-child {
   margin-right: 10px;
 }

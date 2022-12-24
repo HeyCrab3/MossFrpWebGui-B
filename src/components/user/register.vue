@@ -8,9 +8,8 @@
       <el-input class="verification" ref="v1" v-model="verification" placeholder="验证码" />      <el-button class="getcode" @click="getCode" >获取验证码</el-button>
       <el-button @click="RegButtonClicked" type="primary" size="large" color="#114514" style="margin-left:1px;width:100px;" class="regbutton">注册</el-button>
       <el-button type="text" @click="dialogVisible = true">忘记密码？</el-button>
-
-      <el-dialog v-model="dialogVisible" title="忘记密码？" width="30%"><span>如果您记得自己的密码却显示密码错误，这是由于后端密码加密格式的更改，请在<strong>私信</strong>中回复指令 #更新信息 重置密码才能登陆成功</span><br/><span>如果您忘记了密码，请在<strong>私信</strong>中回复指令 #更新信息 重置密码。</span><template #footer><span class="dialog-footer"><el-button type="primary" size="large" color="#114514" @click="dialogVisible = false">好</el-button></span></template></el-dialog>
   </div>
+  <el-dialog v-model="dialogVisible" title="忘记密码？" width="30%"><span>如果您记得自己的密码却显示密码错误，这是由于后端密码加密格式的更改，请在<strong>私信</strong>中回复指令 #更新信息 重置密码才能登陆成功</span><br/><span>如果您忘记了密码，请在<strong>私信</strong>中回复指令 #更新信息 重置密码。</span><template #footer><span class="dialog-footer"><el-button type="primary" size="large" color="#114514" @click="dialogVisible = false">好</el-button></span></template></el-dialog>
 </div>
 </template>
 <style>

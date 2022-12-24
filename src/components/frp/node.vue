@@ -5,7 +5,7 @@
             <el-menu-item disabled>MossFrp 控制台</el-menu-item>
             <el-menu-item index="/"><el-icon><house/></el-icon>主页</el-menu-item>
             <el-menu-item index="/status"><el-icon><Cpu /></el-icon>节点状态</el-menu-item>
-            <el-menu-item index="/code"><el-icon><IconMenu /></el-icon>激活码列表</el-menu-item>
+            <el-menu-item index="/code"><el-icon><IconMenu /></el-icon>穿透码列表</el-menu-item>
             <el-menu-item index="/store"><el-icon><Shop /></el-icon>商店</el-menu-item>
             <el-menu-item index="/settings"><el-icon><Setting /></el-icon>个人设置</el-menu-item>
           </el-menu>
@@ -28,15 +28,20 @@
           <el-scrollbar>
             <h2>节点状态</h2>
 
-            <el-table v-loading="isTableLoading" empty-text="你是怎么卡出来的呢？这里不应该是空的。" :data="tableData" style="width: 90%;height:100%;margin-left:20px" max-height="100%">
-              <el-table-column fixed prop="address" label="节点名称" width="150" height="200px" />
+            <el-table v-loading="isTableLoading" empty-text="你是怎么卡出来的呢？这里不应该是空的。" :data="tableData" style="width:90%;height:100%;margin-left:20px" max-height="100%">
+              <el-table-column fixed prop="node" label="" width="50" />
+              <el-table-column fixed prop="address" label="节点名称" width="130" />
               <el-table-column prop="activity" label="活动状态" width="120" />
-              <el-table-column prop="band-max-per" label="节点最大上行带宽" width="120" />
-              <el-table-column prop="coin" label="需求货币种类" width="120" />
+              <el-table-column prop="band-max-per" label="节点最大带宽" width="120" />
+              <el-table-column prop="coin" label="所需货币种类" width="120" >
+
+      </el-table-column>
+
               <el-table-column prop="enable" label="是否允许创建新的穿透码" width="120" />
               <el-table-column prop="load" label="实时负载" width="150" />
+              
               <el-table-column prop="price" label="价格" width="120" />
-              <el-table-column prop="info" label="备注" width="200" />
+              <el-table-column prop="info" label="备注" width="250" />
             </el-table>
           </el-scrollbar>
         </el-main>
@@ -57,7 +62,6 @@ const route = useRoute();
 let username = ref('**');
 let tableData = ref(null);
 let isTableLoading = ref(true);
-
 const logout = () => {
   ElMessageBox.confirm('确认退出登录？','退出登录')
   .then(function(){
@@ -66,7 +70,7 @@ const logout = () => {
     ElMessage.success('您已退出登录')
   })
 }
-
+ 
 axios.get(`/api?type=userInfo&token=${GetCookie('token')}`)
 .then(function(Response){
     const ResponseCode = GetStatusCode(Response);
@@ -95,6 +99,7 @@ axios.get(`/api?type=allNode&token=${GetCookie('token')}`)
           console.log(Response['data']['nodeData'][a])
           nodeList.push(Response['data']['nodeData'][a]);
       }
+
       console.log(nodeList)
       tableData.value = nodeList;
       isTableLoading = false;
@@ -131,12 +136,10 @@ axios.get(`/api?type=allNode&token=${GetCookie('token')}`)
     display: inline-block
 }
 
-.el-table tr {
-    background-color: var(--el-table-tr-bg-color);
-    height: 80px;
+.el-table /deep/ .el-table__cell {
+    height: 100px;
 }
-
-.card a{
+    .card a{
     color:#FFF;
     font-size:1.2em
 }
