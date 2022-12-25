@@ -5,7 +5,7 @@
             <el-menu-item disabled>MossFrp 控制台</el-menu-item>
             <el-menu-item index="/"><el-icon><house/></el-icon>主页</el-menu-item>
             <el-menu-item index="/status"><el-icon><Cpu /></el-icon>节点状态</el-menu-item>
-            <el-menu-item index="/code"><el-icon><IconMenu /></el-icon>激活码列表</el-menu-item>
+            <el-menu-item index="/code"><el-icon><IconMenu /></el-icon>穿透码列表</el-menu-item>
             <el-menu-item index="/store"><el-icon><Shop /></el-icon>商店</el-menu-item>
             <el-menu-item index="/settings"><el-icon><Setting /></el-icon>个人设置</el-menu-item>
           </el-menu>
@@ -26,7 +26,9 @@
         </el-header>
   
         <el-main>
+          
           <el-scrollbar>
+          
             <el-alert
     title="使用须知"
     type="warning"
@@ -34,24 +36,26 @@
     show-icon
     style="margin-left:20px;width:84%;margin-top:10px"
   />  
-            <el-card class="card">
-                <span>欢迎回家，</span>
+            <el-card class="card" style="width: 230px;height: 260px;">
+                <span >欢迎回家，</span>
                 <i class="el-icon-edit"><h2>{{username}}</h2></i>
             </el-card>
-            <el-card class="card">
+            
+            <el-card class="card" style="width: 230px;height: 260px;">
                 <span>用户UID</span>
                 <h2>{{userId}}<a href="/#/settings"><el-icon><ArrowRight /></el-icon></a></h2>
             </el-card>
-            <el-card class="card">
+            <el-card class="card" style="width: 230px;height: 260px;">
                 <span>金币</span>
                 <h2>{{gold}}<a href="/#/store"><el-icon><ArrowRight /></el-icon></a></h2>
             </el-card>
-            <el-card class="card">
+            <el-card class="card" style="width: 230px;height: 260px;">
                 <span>银币</span>
                 <h2>{{silver}}<a href="/#/store"><el-icon><ArrowRight /></el-icon></a></h2>
             </el-card>
 
           </el-scrollbar>
+          
         </el-main>
       </el-container>
     </el-container>
